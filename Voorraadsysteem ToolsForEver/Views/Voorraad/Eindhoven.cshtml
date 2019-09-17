@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Voorraadsysteem_ToolsForEver.ViewModels.VoorraadViewModel>
+@using Voorraadsysteem_ToolsForEver.Models
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Voorraadoverzicht Eindhoven</h2>
+@if (User.Identity.IsAuthenticated && User.IsInRole("Directie"))
+{
+
+    <p>Totale inkoopwaarde van alle producten: €@Model.Sum(i => i.InkoopPrijs * i.Aantal)</p> @*rekent de totale inkoopwaarde uit van alle producten in de onderstaande tabel*@
+    <p>Totale verkoopwaarde van alle producten: €@Model.Sum(i => i.VerkoopPrijs * i.Aantal)</p> @*rekent de totale verkoopwaarde uit van alle producten in de onderstaande tabel*@
+}
+<div class="form-group">
+    <form asp-controller="Movies" asp-action="Index">
+        <p>
+            <input type="text" class="form-control col-md-3" placeholder="Productnaam of locatie" name="search">
+            <input type="submit" class="btn" value="Zoeken" />
+        </p>
+    </form>
+</div>
+
+<table class="table">
+    <tr>
+
+        <th>
+            @Html.DisplayNameFor(model => model.Naam)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Type)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MinimaalAantal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InkoopPrijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VerkoopPrijs)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Aantal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plaats)
+        </th>
+
+        <th>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+
+    {
+        if (item.Aantal <= item.MinimaalAantal)
+        {
+            <div class="alert alert-danger" role="alert">
+                <li>Product <b>@item.Naam</b> met Voorraadnummer <b>@item.VoorraadItemId</b> is laag op voorraad, locatie <b>@item.Plaats</b></li>
+            </div>
+
+        }
+
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MinimaalAantal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InkoopPrijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VerkoopPrijs)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aantal)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Plaats)
+            </td>
+            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.VoorraadItemId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.VoorraadItemId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.VoorraadItemId })
+            </td>
+        </tr>
+    }
+</table>

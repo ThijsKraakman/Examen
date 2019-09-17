@@ -1,0 +1,80 @@
+﻿@model Voorraadsysteem_ToolsForEver.ViewModels.VoorraadViewModel
+@using Voorraadsysteem_ToolsForEver.Models
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Voorraad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VoorraadItemId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VoorraadItemId)
+        </dd>
+
+        @foreach (Product product in Model.ConnectedProducts)
+        {
+            {
+                <dt>
+                    @Html.Raw("Productnaam")
+                </dt>
+                <dd>
+                    @Html.Raw(product.Naam)
+                </dd>
+                <dt>
+                    @Html.Raw("Producttype")
+                </dt>
+                <dd>
+                    @Html.Raw(product.Type)
+                </dd>
+                <dt>
+                    @Html.Raw("Product inkoopprijs")
+                </dt>
+                <dd>
+                    @Html.Raw(product.InkoopPrijs)
+                </dd>
+                <dt>
+                    @Html.Raw("Product verkoopprijs")
+                </dt>
+                <dd>
+                    @Html.Raw(product.VerkoopPrijs)
+                </dd>
+                <dt>
+                    @Html.Raw("Minimaal aantal")
+                </dt>
+                <dd>
+                    @Html.Raw(product.MinimaalAantal)
+                </dd>
+
+              
+
+
+
+            }
+        }
+
+        @foreach (Locatie locatie in Model.ConnectedLocaties)
+        {
+            {
+                <dt>
+                    @Html.Raw("Product Locatie")
+                </dt>
+                <dd>
+                    @Html.Raw(locatie.Plaats)
+                </dd>
+            }
+        }
+    </dl>
+</div>
+
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.VoorraadItemId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

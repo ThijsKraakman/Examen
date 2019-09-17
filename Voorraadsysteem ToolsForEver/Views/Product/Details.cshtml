@@ -1,0 +1,58 @@
+﻿@model Voorraadsysteem_ToolsForEver.Models.Product
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Product</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Naam)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Naam)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.InkoopPrijs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.InkoopPrijs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VerkoopPrijs)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VerkoopPrijs)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MinimaalAantal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MinimaalAantal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ProductId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

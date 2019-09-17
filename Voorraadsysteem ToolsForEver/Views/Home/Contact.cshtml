@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Voorraadsysteem_ToolsForEver.Models.Locatie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Contact pagina</h2>
+<p>Welkom op de contactpagina van ToolsForEver. Onderstaand onze locatie gegevens.</p>
+<b>Kantoor</b><br />
+<b>Toolstraat 3</b><br />
+<b>1234 AA</b><br />
+<b>Alkmaar</b><br />
+<b>06-12345678</b><br />
+<br />
+@foreach (var item in Model)
+{
+
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Html.DisplayNameFor(model => model.Adres):
+            <b> @Html.DisplayFor(modelItem => item.Adres)</b> <br />
+            @Html.DisplayNameFor(model => model.Postcode):
+            <b> @Html.DisplayFor(modelItem => item.Postcode)</b> <br />
+            @Html.DisplayNameFor(model => model.Plaats):
+            <b> @Html.DisplayFor(modelItem => item.Plaats)</b>
+        </div>
+    </div>
+
+}
